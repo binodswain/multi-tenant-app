@@ -36,24 +36,19 @@ router.get("/check", function (req, res, next) {
         throw new Error("MISSING_PARAM");
     }
 
-    const [name] = domain.split(".");
+    const [_, name] = domain.split(".").split("https://");
     const user = userlist.find((e) => {
         return e.name === name;
     });
 
-    // if (user) {
-    //     res.json({
-    //         domain,
-    //         name,
-    //     });
-    // } else {
-    //     throw new Error("NOT_FOUND");
-    // }
-    res.json({
-        name,
-        user,
-        domain,
-    });
+    if (user) {
+        res.json({
+            domain,
+            name,
+        });
+    } else {
+        throw new Error("NOT_FOUND");
+    }
 });
 
 module.exports = router;
