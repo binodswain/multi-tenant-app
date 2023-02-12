@@ -36,7 +36,7 @@ router.get("/check", function (req, res, next) {
         throw new Error("MISSING_PARAM");
     }
 
-    const [_, name] = domain.split(".").split("https://");
+    const [_, name] = domain.split(".")[0].split("https://");
     const user = userlist.find((e) => {
         return e.name === name;
     });
