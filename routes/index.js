@@ -41,14 +41,19 @@ router.get("/check", function (req, res, next) {
         return e.name === name;
     });
 
-    if (user) {
-        res.json({
-            domain,
-            name,
-        });
-    } else {
-        throw new Error("NOT_FOUND");
-    }
+    // if (user) {
+    //     res.json({
+    //         domain,
+    //         name,
+    //     });
+    // } else {
+    //     throw new Error("NOT_FOUND");
+    // }
+    res.json({
+        name,
+        user,
+        domain,
+    });
 });
 
 module.exports = router;
